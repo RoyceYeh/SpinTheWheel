@@ -1,0 +1,105 @@
+{
+  "themes": [
+    {
+      "themeId": "stylish-design",
+      "themeName": "風格設計旅店大賞",
+      "description": "注重設計美學與創意的精品旅店",
+      "hotelList": [
+        {
+          "hotelId": "art-gallery-hotel",
+          "hotelName": "藝廊文創旅店",
+          "country": "斯洛伐克",
+          "city": "皮爾斯恰尼",
+          "imageUrl": "https://images.unsplash.com/photo-1697823749604-70de24401346?q=80&w=1979&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 235
+        },
+        {
+          "hotelId": "european-classic-hotel",
+          "hotelName": "歐式古典酒店",
+          "country": "瑞典",
+          "city": "斯德哥爾摩",
+          "imageUrl": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 188
+        },
+        {
+          "hotelId": "minimalist-hotel",
+          "hotelName": "極簡主義酒店",
+          "country": "加拿大",
+          "city": "蒙特婁",
+          "imageUrl": "https://images.unsplash.com/photo-1549638441-b787d2e11f14?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 212
+        },
+        {
+          "hotelId": "tropical-style-hotel",
+          "hotelName": "熱帶風情旅店",
+          "country": "泰國",
+          "city": "清邁",
+          "imageUrl": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 165
+        }
+      ]
+    },
+    {
+      "themeId": "HealingResorts",
+      "themeName": "療癒溫泉度假首選",
+      "description": "提供身心放鬆的溫泉度假體驗",
+      "hotelList": [
+        {
+          "hotelId": "canyon-view-hotel",
+          "hotelName": "峽谷風景飯店",
+          "country": "墨西哥",
+          "city": "墨西哥城",
+          "imageUrl": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 310
+        },
+        {
+          "hotelId": "japanese-garden-onsen",
+          "hotelName": "日式庭園溫泉旅館",
+          "country": "日本",
+          "city": "箱根",
+          "imageUrl": "https://images.unsplash.com/photo-1529290130-4ca3753253ae?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 275
+        },
+        {
+          "hotelId": "volcano-mud-spa",
+          "hotelName": "火山泥漿溫泉酒店",
+          "country": "印尼",
+          "city": "峇里島",
+          "imageUrl": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 240
+        }
+      ]
+    },
+    {
+      "themeId": "CityView",
+      "themeName": "城市景觀住宿精選",
+      "description": "欣賞都市天際線的絕佳住宿選擇",
+      "hotelList": [
+        {
+          "hotelId": "skyscraper-view-hotel",
+          "hotelName": "摩天大樓景觀飯店",
+          "country": "美國",
+          "city": "拉斯維加斯",
+          "imageUrl": "https://images.unsplash.com/photo-1578774204375-826dc5d996ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 195
+        },
+        {
+          "hotelId": "infinity-pool-hotel",
+          "hotelName": "無邊際泳池酒店",
+          "country": "新加坡",
+          "city": "新加坡",
+          "imageUrl": "https://images.unsplash.com/photo-1536625737227-92a1fc042e7e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 220
+        },
+        {
+          "hotelId": "harbor-view-hotel",
+          "hotelName": "港灣海景飯店",
+          "country": "希臘",
+          "city": "伊亞",
+          "imageUrl": "https://images.unsplash.com/photo-1498503403619-e39e4ff390fe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "totalVotes": 255
+        }
+      ]
+    }
+  ]
+}
