@@ -1,23 +1,25 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import HotelCard from './HotelCard.vue'
-import Lightbox from './Lightbox.vue'
 import { useHotelStore } from '@/stores'
+import { useLightbox } from '@/composables/useLightbox'
+
 const hotelStore = useHotelStore()
 const hotelData = computed(() => hotelStore.data)
-const hotelList = hotelData.value[1].hotelList
 
-const openLightbox = (index) => {
-  currentIndex.value = index
-  isVisible.value = true
-  // 防止背景滾動
-  document.body.style.overflow = 'hidden'
-}
+// 使用 lightbox composable
+const { handleVoteAndOpenLightbox } = useLightbox()
 
-const closeLightbox = () => {
-  isVisible.value = false
-  // 恢復背景滾動
-  document.body.style.overflow = ''
+// 根據 themeId 獲取對應的酒店列表
+const hotelList = computed(() => {
+  if (!hotelData.value || !Array.isArray(hotelData.value)) return []
+  const theme = hotelData.value.find((t) => t.themeId === 'HealingResorts')
+  return theme ? theme.hotelList : []
+})
+
+// 處理投票事件，直接使用 composable
+const handleVote = (index) => {
+  handleVoteAndOpenLightbox(index)
 }
 </script>
 
@@ -27,13 +29,12 @@ const closeLightbox = () => {
       <HotelCard
         v-for="(hotel, index) in hotelList"
         :key="hotel.hotelName"
-        @click="openLightbox(index)"
         :hotel="hotel"
+        :theme-id="'HealingResorts'"
+        @vote="handleVote(index)"
       />
     </div>
   </div>
-
-  <Lightbox @close="closeLightbox" :isVisible="isVisible" />
 </template>
 
 <style scoped lang="scss">

@@ -4,6 +4,8 @@ import HealingResorts from '@/components/HealingResorts.vue'
 import StylishDesign from '@/components/StylishDesign.vue'
 import { useHotelStore } from '@/stores'
 import { ref, computed, onMounted } from 'vue'
+import { useLightbox } from '@/composables/useLightbox'
+import Lightbox from '@/components/Lightbox.vue'
 
 const hotelStore = useHotelStore()
 const currentTab = ref('StylishDesign') // 預設第一個 tab
@@ -11,14 +13,8 @@ const totalComponents = { StylishDesign, HealingResorts, CityView }
 
 // 使用 computed 來取得資料
 const hotelData = computed(() => hotelStore.data || [])
-console.log(hotelData.value)
 
-const currentHotelList = computed(() => {
-  const currentTheme = hotelData.value.find((theme) => theme.themeId === currentTab.value)
-  return currentTheme ? currentTheme.hotelList : []
-})
-
-console.log(currentHotelList)
+const { isVisible, closeLightbox } = useLightbox()
 
 onMounted(async () => {
   await hotelStore.fetchHotelData()
@@ -43,11 +39,10 @@ onMounted(async () => {
           {{ hotel.themeName }}
         </button>
       </div>
-      <component
-        :is="totalComponents[currentTab]"
-        :hotelList="currentHotelList"
-        class="tab"
-      ></component>
+      <component :is="totalComponents[currentTab]" />
+
+      <!-- 統一的 Lightbox 組件 -->
+      <Lightbox @close="closeLightbox" :isVisible="isVisible" />
     </div>
   </div>
 </template>

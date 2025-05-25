@@ -1,26 +1,21 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import HotelCard from './HotelCard.vue'
-import Lightbox from './Lightbox.vue'
 import { useHotelStore } from '@/stores'
+
+const emit = defineEmits(['vote'])
+
 const hotelStore = useHotelStore()
 const hotelData = computed(() => hotelStore.data)
-const hotelList = hotelData.value[2].hotelList
+// 根據原始 HomeView 的邏輯，CityView 應該是第三個主題 (index 2)
+const hotelList = computed(() => {
+  if (!hotelData.value || !Array.isArray(hotelData.value)) return []
+  const theme = hotelData.value.find((t) => t.themeId === 'CityView')
+  return theme ? theme.hotelList : []
+})
 
-const isVisible = ref(false)
-const currentIndex = ref(0)
-
-const openLightbox = (index) => {
-  currentIndex.value = index
-  isVisible.value = true
-  // 防止背景滾動
-  document.body.style.overflow = 'hidden'
-}
-
-const closeLightbox = () => {
-  isVisible.value = false
-  // 恢復背景滾動
-  document.body.style.overflow = ''
+const handleVote = (index) => {
+  emit('vote', index)
 }
 </script>
 
@@ -30,13 +25,12 @@ const closeLightbox = () => {
       <HotelCard
         v-for="(hotel, index) in hotelList"
         :key="hotel.hotelName"
-        @click="openLightbox(index)"
         :hotel="hotel"
+        :theme-id="'CityView'"
+        @vote="handleVote(index)"
       />
     </div>
   </div>
-
-  <Lightbox @close="closeLightbox" :isVisible="isVisible" />
 </template>
 
 <style scoped lang="scss">

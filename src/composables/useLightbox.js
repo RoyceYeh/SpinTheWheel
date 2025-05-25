@@ -1,12 +1,11 @@
-// useLightbox.js
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
-export default function useLightbox(images) {
-  const isVisible = ref(false)
-  const currentIndex = ref(0)
-  const imageList = ref(images) // 接收圖片列表
+// 全局狀態 - 所有組件共享同一個 lightbox 實例
+const isVisible = ref(false)
+const currentIndex = ref(0)
 
-  const openLightbox = (index) => {
+export function useLightbox() {
+  const openLightbox = (index = 0) => {
     currentIndex.value = index
     isVisible.value = true
     // 防止背景滾動
@@ -19,21 +18,17 @@ export default function useLightbox(images) {
     document.body.style.overflow = ''
   }
 
-  const nextImage = () => {
-    currentIndex.value = (currentIndex.value + 1) % imageList.value.length
-  }
-
-  const prevImage = () => {
-    currentIndex.value = (currentIndex.value - 1 + imageList.value.length) % imageList.value.length
+  const handleVoteAndOpenLightbox = (index = 0) => {
+    openLightbox(index)
   }
 
   return {
+    // 狀態
     isVisible,
     currentIndex,
-    imageList,
+    // 方法
     openLightbox,
     closeLightbox,
-    nextImage,
-    prevImage,
+    handleVoteAndOpenLightbox,
   }
 }
