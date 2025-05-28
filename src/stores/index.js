@@ -28,6 +28,7 @@ export const useHotelStore = defineStore('hotelData', () => {
       if (response.status === 200) {
         const apiData = response.data.record.themes
         data.value = apiData
+        // console.log(data.value)
       }
     } catch (err) {
       console.error('獲取旅店資料時出錯:', err)
@@ -66,7 +67,7 @@ export const useHotelStore = defineStore('hotelData', () => {
       // 記錄該主題已投票
       votedThemes.value.add(themeId)
 
-      console.log(`${hotelName} 投票成功，目前票數: ${hotel.totalVotes}`)
+      // console.log(`${hotelName} 投票成功，目前票數: ${hotel.totalVotes}`)
 
       // 背景更新到遠端 API（不等待結果）
       axios

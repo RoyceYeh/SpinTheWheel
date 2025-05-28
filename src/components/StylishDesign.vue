@@ -17,9 +17,6 @@ const hotelList = computed(() => {
   return theme ? theme.hotelList : []
 })
 
-const isVisible = ref(false)
-const currentIndex = ref(0)
-
 // 處理投票事件，直接使用 composable
 const handleVote = (index) => {
   handleVoteAndOpenLightbox(index)
