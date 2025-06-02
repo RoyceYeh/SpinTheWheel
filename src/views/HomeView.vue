@@ -89,7 +89,7 @@ onMounted(async () => {
   }
   .tab2 {
     background-color: #ffbca1;
-    margin-left: -1px;
+    margin-left: -2px;
   }
 }
 </style>

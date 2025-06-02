@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import HotelCard from './HotelCard.vue'
 import { useHotelStore } from '@/stores'
 import { useLightbox } from '@/composables/useLightbox'
@@ -40,7 +40,7 @@ const handleVote = (index) => {
 <style scoped lang="scss">
 .tab {
   padding: 60px 10px;
-  background-color: rgb(222, 185, 237);
+  background-color: #deb9ed;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   border-left: 1px solid black;

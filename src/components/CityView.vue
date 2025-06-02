@@ -2,20 +2,24 @@
 import { computed } from 'vue'
 import HotelCard from './HotelCard.vue'
 import { useHotelStore } from '@/stores'
-
-const emit = defineEmits(['vote'])
+import { useLightbox } from '@/composables/useLightbox'
 
 const hotelStore = useHotelStore()
 const hotelData = computed(() => hotelStore.data)
-// 根據原始 HomeView 的邏輯，CityView 應該是第三個主題 (index 2)
+
+// 使用 lightbox composable
+const { handleVoteAndOpenLightbox } = useLightbox()
+
+// 根據 themeId 獲取對應的酒店列表
 const hotelList = computed(() => {
   if (!hotelData.value || !Array.isArray(hotelData.value)) return []
   const theme = hotelData.value.find((t) => t.themeId === 'CityView')
   return theme ? theme.hotelList : []
 })
 
+// 處理投票事件，直接使用 composable
 const handleVote = (index) => {
-  emit('vote', index)
+  handleVoteAndOpenLightbox(index)
 }
 </script>
 

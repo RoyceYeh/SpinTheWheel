@@ -67,8 +67,6 @@ export const useHotelStore = defineStore('hotelData', () => {
       // 記錄該主題已投票
       votedThemes.value.add(themeId)
 
-      // console.log(`${hotelName} 投票成功，目前票數: ${hotel.totalVotes}`)
-
       // 背景更新到遠端 API（不等待結果）
       axios
         .put(

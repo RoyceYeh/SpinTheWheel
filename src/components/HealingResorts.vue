@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import HotelCard from './HotelCard.vue'
 import { useHotelStore } from '@/stores'
 import { useLightbox } from '@/composables/useLightbox'

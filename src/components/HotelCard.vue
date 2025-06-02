@@ -48,8 +48,10 @@ const handleCardClick = async () => {
     <div class="box">
       <h3 class="txt">{{ hotel.hotelName }}</h3>
       <div class="locate">
-        <p>{{ hotel.country }}</p>
-        <p>{{ hotel.city }}</p>
+        <p>國家:{{ hotel.country }}</p>
+      </div>
+      <div class="locate">
+        <p>城市:{{ hotel.city }}</p>
       </div>
       <div class="vote">{{ hotel.totalVotes || 0 }} <span>票</span></div>
       <div class="btn">
