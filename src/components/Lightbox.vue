@@ -1,11 +1,11 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 
-defineProps({
+const props = defineProps({
   isVisible: Boolean,
 })
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 
 const prize = [
   '郵輪',
@@ -21,16 +21,13 @@ const prize = [
 // 轉盤
 
 // 配置參數
-const dataUrl = './data.json' // 取得資料
-const dataPost = 'https://jsonplaceholder.typicode.com/posts' // 傳送資料，測試 API會回傳一個帶有 id: 101 的 JSON 物件作為回應
-const resultPageURL = '#' // 成功跳轉到結果頁面的 URL
 const numSegments = 6 // 轉盤分為幾個區域
 const angleOffset = 15 // 角度的微調值 (可以為正數或負數)
 const numRotations = 5 // 轉盤旋轉的圈數
 const transitionDuration = 3000 // 動畫效果的過渡時間 (毫秒)
 const delayBeforeRedirect = 1000 // 轉盤旋轉完畢後的延遲時間 (毫秒)
 const useCustomID = true // 是否使用自訂 answer，若為 true 則不從 data.json 取 answer
-const customID = 5 // 自訂的 answer useCustomID 要調成 true
+const customID = ref(5) // 自訂的 answer useCustomID 要調成 true
 const isSpinning = true // 是否可連續點擊
 
 // 響應式狀態
@@ -41,11 +38,22 @@ const turntableStyle = reactive({
   transition: 'none',
 })
 
-// 新增显示控制
+// 新增控制
 const showContent = ref(true)
 const showWin = ref(false)
 const showLose = ref(false)
 const winText = ref('')
+
+const handleClose = () => {
+  // 重置所有狀態
+  showContent.value = true
+  showWin.value = false
+  showLose.value = false
+  isClicked.value = true
+  resetTurntable()
+  // 確保調用 emit
+  emit('close')
+}
 
 // 重置轉盤至初始狀態 (0度)
 const resetTurntable = () => {
@@ -70,7 +78,7 @@ const startRotation = (prizeId) => {
   setTimeout(() => {
     // 轉盤旋轉結束後延遲再跳轉到結果頁面
     setTimeout(() => {
-      sendResult(prizeId)
+      showResult(prizeId)
       // 在跳轉或顯示結果後再次點擊
       isClicked.value = isSpinning
     }, delayBeforeRedirect)
@@ -95,39 +103,6 @@ const showResult = (prizeId) => {
   }
 }
 
-// 發送結果
-const sendResult = (prizeId) => {
-  const result = {
-    answer: prizeId, // 傳送旋轉結果 prizeId 值
-  }
-
-  fetch(dataPost, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(result),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      return response.json()
-    })
-    .then((data) => {
-      console.log('POST測試 API 返回結果:', data)
-      // 顯示獲獎畫面而不是彈窗
-      showResult(prizeId)
-      // 不立即跳轉頁面
-      // window.location.href = resultPageURL
-    })
-    .catch((error) => {
-      console.error('送出結果時發生錯誤:', error)
-      // 即使發生錯誤，也顯示獲獎畫面
-      showResult(prizeId)
-    })
-}
-
 // 點擊事件處理
 const handleClick = () => {
   if (!isClicked.value) return // 防止動畫期間再次點擊
@@ -137,29 +112,17 @@ const handleClick = () => {
   resetTurntable()
 
   if (useCustomID) {
+    // 生成 1-8 的隨機數
+    customID.value = Math.floor(Math.random() * 8) + 1
     // 使用自訂 answer
-    startRotation(customID)
-    console.log('自訂answer=', customID)
-  } else {
-    // 從 data.json 取 answer
-    fetch(dataUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const prizeId = data.answer
-        startRotation(prizeId)
-        console.log('取得資料 answer:', prizeId) //取得資料
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error)
-        isClicked.value = true // 如果發生錯誤，重置為 true 允許再次點擊
-      })
+    startRotation(customID.value)
+    console.log('自訂answer=', customID.value)
   }
 }
 </script>
 
 <template>
   <div v-if="isVisible" class="lightbox">
-    <button class="close-button" @click="$emit('close')">×</button>
     <div class="turntable_result">
       <div class="lbContainer">
         <div class="content" :class="{ active: showContent, close: !showContent }">
@@ -183,10 +146,9 @@ const handleClick = () => {
           </div>
         </div>
         <div class="win" :class="{ active: showWin, close: !showWin }">
-          <div class="butterfly"><img src="@/assets/imgs/butterfly.svg" alt="" /></div>
           <div class="white">
             <div class="text">{{ winText }}</div>
-            <button class="closeButton" @click="$emit('close')">
+            <button class="closeButton" @click="handleClose">
               <p>返回活動</p>
             </button>
           </div>
@@ -199,7 +161,7 @@ const handleClick = () => {
               <br />
               加油！繼續投票就有機會
             </h1>
-            <button class="closeButton" @click="$emit('close')">
+            <button class="closeButton" @click="handleClose">
               <p>返回活動</p>
             </button>
           </div>
