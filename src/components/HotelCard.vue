@@ -106,6 +106,7 @@ const handleCardClick = async () => {
 
   .imgBox {
     height: 15vw;
+    min-height: 300px;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
   }
