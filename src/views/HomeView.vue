@@ -57,11 +57,16 @@ onMounted(async () => {
   padding-bottom: 31.25%;
   background-size: cover;
   background-repeat: no-repeat;
+  @media screen and (max-width: 980px) {
+    background-image: url('../assets/imgs/vote.png');
+    padding-bottom: 64.5%;
+  }
 }
 .container {
   width: 100%;
   max-width: 1232px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 .button-group {
   display: flex;
@@ -90,6 +95,18 @@ onMounted(async () => {
   .tab2 {
     background-color: #ffbca1;
     margin-left: -2px;
+  }
+  @media screen and (max-width: 980px) {
+    .tab-button {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    .tab-button {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 5px;
+    }
   }
 }
 </style>

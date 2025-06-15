@@ -231,6 +231,9 @@ const handleClick = () => {
     top: 20px;
     right: 30px;
   }
+  .turntable_result {
+    padding: 0 15px;
+  }
 }
 
 .lbContainer {
@@ -241,7 +244,7 @@ const handleClick = () => {
   margin: auto;
   background-color: #fffdaa;
   z-index: 1;
-
+  padding: 0 15px;
   &::after {
     content: '';
     position: absolute;
@@ -531,6 +534,15 @@ const handleClick = () => {
   }
   .close {
     display: none;
+  }
+  @media screen and (max-width: 980px) {
+    .lose {
+      .white {
+        h1 {
+          font-size: 20px;
+        }
+      }
+    }
   }
 }
 </style>

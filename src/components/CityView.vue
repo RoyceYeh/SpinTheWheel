@@ -44,18 +44,30 @@ const handleVote = (index) => {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   border-left: 1px solid black;
-  margin-right: 3px;
+  margin-right: 3.5px;
 }
 .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  max-width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  justify-items: center;
   gap: 3%;
+  row-gap: 30px;
+  @media screen and (max-width: 980px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .cardLink {
   background-color: white;
-  max-width: 300px;
+  max-width: 350px;
   width: 100%;
   border-radius: 10px;
   text-decoration: none;
@@ -70,14 +82,14 @@ const handleVote = (index) => {
   }
   img {
     width: 100%;
-    min-height: 300px;
-
+    // min-height: 300px;
     object-fit: cover;
     transition: all 0.3s linear;
     border-radius: 10px 10px 0 0;
   }
   .imgBox {
     height: 15vw;
+    min-height: 300px;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
   }
