@@ -81,6 +81,7 @@ onMounted(async () => {
     padding: 15px 10px;
     border: 1px solid;
     cursor: pointer;
+    color: #000;
     &.active {
       border-bottom: unset;
     }
